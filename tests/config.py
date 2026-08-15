@@ -1,7 +1,8 @@
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-from tests.tools.config.grpc import GRPCClientTestConfig
-from tests.tools.config.http import HTTPClientTestConfig
+from tests.tools.config.grpc import GRPCClientTestConfig, GRPCServerTestConfig
+from tests.tools.config.http import HTTPClientTestConfig, HTTPServerTestConfig
+from tests.tools.config.postgres import PostgresClientTestConfig
 from tests.tools.config.kafka import KafkaClientTestConfig
 
 
@@ -35,5 +36,12 @@ class TestSettings(BaseSettings):
     обработки событий перед синхронными проверками.
     """
 
+    mock_http_server: HTTPServerTestConfig
+    mock_grpc_server: GRPCServerTestConfig
+
+    operations_postgres_client: PostgresClientTestConfig
+
+
 
 test_settings = TestSettings()
+
